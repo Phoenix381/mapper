@@ -1,0 +1,91 @@
+#map {
+  width: auto;
+  height:auto;
+  border:solid 1px #000;
+  /*background:#f4f4f4;*/
+  background:#ddd;
+}
+
+#list {
+	overflow: auto;
+	background: #cfcfcf;
+	border:solid 1px #000;
+	border-left-style: none;
+	padding-top: 0.5em;
+}
+
+a {
+	text-decoration: none;
+	color: black;
+}
+
+#list > a {
+	margin-left: 0.5em;
+	margin: 0.5em;
+	padding-left: 0.3em;
+	display: block;
+	border-bottom: 2px solid steelblue;
+	border-radius: 5px;
+	background: #eee;
+}
+
+#list > a:hover {
+	border-color: green;
+}
+
+#checkbox {
+	margin-left: 1.5em;
+	margin-top: 1em;
+	font-weight: bold;
+}
+
+.wrapper {
+	display: grid;
+	grid-template-columns: 60% 40%;
+	height: 88vh;
+}
+
+body {
+	background: #bfbfbf;
+}
+
+.actions {
+	height: auto;
+	padding: 0.5em;
+	display: grid;
+	/*grid-template-columns: repeat(auto-fit, 20em);*/
+	grid-template-columns: 80% 15%;
+	grid-gap: 10px;
+	
+}
+
+.controls {
+	height: auto;
+	/*padding: 0.5em;*/
+	display: grid;
+	grid-template-columns: repeat(auto-fit, 20em);
+	/*grid-template-columns: 10% 40% 25% 10%;*/
+	grid-gap: 20px;
+	
+}
+
+.button {
+	display: block;
+	background: #47a447;
+	color: #fffe;
+	text-align: center;
+	font-weight: bold;
+	cursor: pointer;
+	padding: 1em;
+	border: 1px solid #555;
+	border-radius: 5px;
+}
+
+.button:hover {
+	background: #5c5cb8;
+}
+
+input[type=checkbox] {
+	margin-left: 0.6em;
+	transform: scale(1.5);
+}

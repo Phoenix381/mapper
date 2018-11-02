@@ -1,0 +1,36 @@
+{
+  "manifest_version": 2,
+  "name": "Mapper",
+  "version": "0.5",
+  "description": "Mind mapping with your bookmarks.",
+  "homepage_url": "https://github.com/Phoenix381/mapper",
+  "icons": {
+    "48": "icons/star.png",
+    "96": "icons/star96.png"
+  },
+
+  "permissions": [
+      "tabs"
+  ],
+
+  "browser_action": {
+    "browser_style": true,
+    "default_icon": "icons/star-empty-38.png",
+    "default_title": "Save bookmark (Ctrl+Shift+D)",
+    "default_popup": "save.html"
+  },
+
+  "background": {
+    "scripts": ["scripts/background.js"]
+  },
+
+  "commands": {
+    "_execute_browser_action": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+D"
+      },
+      "description": "Save bookmark"
+    }
+  }
+
+}

@@ -1,0 +1,5 @@
+# compressed extension
+*.xpi
+
+# testing db
+server/bookmarks.db
