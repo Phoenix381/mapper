@@ -1,10 +1,10 @@
 # Mapper
 
-## About
+## Описание
 
-Firefox extension for bookmark sorting and organising. Adds basic tagging and tag visualisation functions. Uses local storage for tag system, works slowly sometimes.
+Аддон сохраняет закладки на локальном сервере и позволяет организовать тэги в удобное для восприятия дерево.
 
-[AMO link](https://addons.mozilla.org/en-US/firefox/addon/mapper/)
+[Линк на addons.mozilla.org](https://addons.mozilla.org/en-US/firefox/addon/mapper/)
 
 ## Used libs
 
