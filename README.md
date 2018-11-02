@@ -6,7 +6,7 @@
 
 [Линк на addons.mozilla.org](https://addons.mozilla.org/en-US/firefox/addon/mapper/)
 
-## Used libs
+## Использованные библиотеки
 
 [taggle.js](https://github.com/okcoker/taggle.js) (MIT)
 [jQuery, jQuery UI](https://github.com/jquery) (MIT)
