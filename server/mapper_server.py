@@ -30,7 +30,7 @@ class RequestHandler(BaseHTTPRequestHandler):
 			self.loadLink(post_data)
 		elif self.path == '/save':
 			post_data = json.loads(post_data)
-			self.saveLink(post_data['url'], post_data['title'], post_data['tags'])
+			self.saveLink(post_data['url'], post_data['title'], post_data['icon'], post_data['tags'])
 		elif self.path == '/remove':
 			self.removeLink(post_data)
 		elif self.path == '/tagList':
@@ -62,9 +62,9 @@ class RequestHandler(BaseHTTPRequestHandler):
 			else:
 				self.wfile.write( json.dumps({'faved':'false'}).encode("utf-8") )
 
-	def saveLink(self, link, title, tags):
+	def saveLink(self, link, title, icon, tags):
 		with dataset.connect('sqlite:///bookmarks.db') as tx:
-			key = tx['links'].insert(dict(url=link, title=title))
+			key = tx['links'].insert(dict(url=link, title=title, icon=icon))
 			for tag in tags:
 				# check if tag is in tree
 				if tx['tree'].find_one(tag=tag) is None:

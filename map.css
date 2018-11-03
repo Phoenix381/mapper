@@ -1,16 +1,21 @@
 #map {
   width: auto;
   height:auto;
-  border:solid 1px #000;
+  border-right:solid 1px #000;
   /*background:#f4f4f4;*/
   background:#ddd;
+}
+
+#tab {
+	overflow: auto;
+	margin-left: 1em;
+	display: grid;
+	grid-template-columns: 33% 33% 33%;
 }
 
 #list {
 	overflow: auto;
 	background: #cfcfcf;
-	border:solid 1px #000;
-	border-left-style: none;
 	padding-top: 0.5em;
 }
 
@@ -19,8 +24,12 @@ a {
 	color: black;
 }
 
-#list > a {
-	margin-left: 0.5em;
+.link {
+	display: grid;
+	grid-template-columns: 5% 95%;
+}
+
+.link > a {
 	margin: 0.5em;
 	padding-left: 0.3em;
 	display: block;
@@ -29,8 +38,49 @@ a {
 	background: #eee;
 }
 
-#list > a:hover {
-	border-color: green;
+.link > a:hover {
+	border-color: turquoise;
+}
+
+.link > img {
+	margin-left: 0.4em;
+	margin-top: 0.4em;
+	width: 24px;
+	height: 24px;
+}
+
+.biglink {
+	margin: 0.5em;
+	text-align: center;
+	vertical-align: middle;
+	display: grid;
+	grid-template-columns: 10% 90%;
+}
+
+.biglink > a {
+	margin-top: 0.5em;
+	margin-right: 0.5em;
+	padding-left: 0.3em;
+	padding-top: 0.1em;
+	padding-right: 0.1em;
+	display: block;
+	border-left: 3px solid steelblue;
+	border-top: 3px solid steelblue;
+	border-radius: 8px;
+	border-bottom-right-radius: 2px;
+	background: #eee;
+}
+
+.biglink > a:hover {
+	border-color: turquoise;
+}
+
+.biglink > img {
+	margin-top: 0.5em;
+    background: #ddd;
+    border-radius: 5px;
+    width: 32px;
+	height: 32px;
 }
 
 #checkbox {
@@ -39,9 +89,13 @@ a {
 	font-weight: bold;
 }
 
-.wrapper {
+.sides {
 	display: grid;
 	grid-template-columns: 60% 40%;
+	height: 88vh;
+}
+
+.full {
 	height: 88vh;
 }
 
@@ -52,6 +106,7 @@ body {
 .actions {
 	height: auto;
 	padding: 0.5em;
+	border-top:solid 1px #000;
 	display: grid;
 	/*grid-template-columns: repeat(auto-fit, 20em);*/
 	grid-template-columns: 80% 15%;

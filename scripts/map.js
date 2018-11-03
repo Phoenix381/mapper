@@ -127,10 +127,40 @@ async function openTag(tag) {
   document.getElementById("list").innerHTML = null;
 
   for (let link of links) {
+    let div = document.createElement('div');
+    div.setAttribute('class', 'link');
+
+    let img = document.createElement('img');
+    img.setAttribute('src', link.icon);
+    div.appendChild(img);
+
     let a = document.createElement('a');
     a.setAttribute('href', link.url);
     a.innerHTML = link.title;
-    document.getElementById("list").appendChild(a);
+    div.appendChild(a);
+
+    document.getElementById("list").appendChild(div);
+  }
+}
+
+async function openTab() {
+  let response = await fetch('http://localhost:60381/loadTag', { method: 'POST', mode: 'cors', body:'show'});
+  let links = await response.json();
+
+  for (let link of links) {
+    let div = document.createElement('div');
+    div.setAttribute('class', 'biglink');
+
+    let img = document.createElement('img');
+    img.setAttribute('src', link.icon);
+    div.appendChild(img);
+
+    let a = document.createElement('a');
+    a.setAttribute('href', link.url);
+    a.innerHTML = link.title;
+    div.appendChild(a);
+
+    document.getElementById("tab").appendChild(div);
   }
 }
 
@@ -156,12 +186,11 @@ function updateLink(link, tags) {
 
 }
 
-var mode = true;
-
 function treeMode() {
-  document.getElementsByClassName("wrapper")[0].innerHTML = `
+  document.getElementById("display").innerHTML = `
     <div id="map"></div>
     <div id="list"></div>`;
+  document.getElementById("display").setAttribute('class', 'sides');
 
   document.getElementsByClassName("controls")[0].innerHTML = '';
 
@@ -169,4 +198,29 @@ function treeMode() {
   .then((treeData) => drawTree(treeData));
 }
 
-treeMode();
+function tabMode() {
+  document.getElementById("display").innerHTML = `
+    <div id="tab"></div>`;
+  document.getElementById("display").setAttribute('class', 'full');
+
+  document.getElementsByClassName("controls")[0].innerHTML = '';
+
+  openTab();
+}
+
+var mode = true;
+
+function changeMode() {
+  if (mode) {
+    treeMode();
+    mode = false;
+  } else {
+    tabMode();
+    mode = true;
+  }
+
+}
+
+document.getElementById("mode").addEventListener("click", changeMode);
+
+tabMode();

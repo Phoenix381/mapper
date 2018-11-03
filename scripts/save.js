@@ -108,7 +108,7 @@ async function removeBookmark() {
 }
 
 async function saveBookmark() {
-  let payload = JSON.stringify( {url:activeTab[0].url, title:activeTab[0].title, tags:field.getTagValues()} );
+  let payload = JSON.stringify( {url:activeTab[0].url, title:activeTab[0].title, icon:activeTab[0].favIconUrl, tags:field.getTagValues()} );
   let response = await fetch('http://localhost:60381/save', { method: 'POST', mode: 'cors', body:payload});
 
   currentBookmark = true;
