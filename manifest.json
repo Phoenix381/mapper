@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Mapper",
-  "version": "0.5",
+  "version": "0.6",
   "description": "Mind mapping with your bookmarks.",
   "homepage_url": "https://github.com/Phoenix381/mapper",
   "icons": {
@@ -22,6 +22,10 @@
 
   "background": {
     "scripts": ["scripts/background.js"]
+  },
+
+  "chrome_url_overrides" : {
+    "newtab": "map.html"
   },
 
   "commands": {

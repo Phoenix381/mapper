@@ -93,15 +93,18 @@ class RequestHandler(BaseHTTPRequestHandler):
 			tree = [{'name':node['tag'], 'parent':node['parent']} for node in tx['tree'].all()]
 			self.wfile.write( json.dumps(tree).encode("utf-8") )
 
-	# TODO show all links in top level node
 	def loadTag(self, tag):
 		with dataset.connect('sqlite:///bookmarks.db') as tx:
-			records = tx['tags'].find(tag=tag)
-			if records is not None:
-				links = [dict( tx['links'].find_one(id=record['url']) ) for record in records]
-				for link in links:
-					link.pop('id')
+			if tag == "Top Level":
+				links = [dict(record) for record in tx['links'].all()]
+			else:
+				records = tx['tags'].find(tag=tag)
+				if records is not None:
+					links = [dict( tx['links'].find_one(id=record['url']) ) for record in records]
+			try:
 				self.wfile.write( json.dumps(links).encode("utf-8") )
+			except:
+				self.wfile.write( json.dumps([]).encode("utf-8") )
 
 	def addTag(self, tag, parent='Top Level'):
 		with dataset.connect('sqlite:///bookmarks.db') as tx:

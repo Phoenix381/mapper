@@ -7,9 +7,6 @@ var currentBookmark;
 var activeTab;
 
 document.getElementById("save").addEventListener("click", saveClick);
-document.getElementById("save").addEventListener("auxclick", openViewer);
-
-//TODO error logging
 
 //update based on currentBookmark var
 function updateIcon(status, tab) {
@@ -73,6 +70,9 @@ async function initTags() {
         }
     }
   });
+  
+  //set focus on input field
+  input.focus();
 }
 
 //Save button click
@@ -97,11 +97,6 @@ async function saveBookmark() {
   let response = await fetch('http://localhost:60381/save', { method: 'POST', mode: 'cors', body:payload});
 
   currentBookmark = true;
-}
-
-//open mapper page
-function openViewer() {
-  browser.tabs.create({"url": "/map.html"});
 }
 
 initTags();

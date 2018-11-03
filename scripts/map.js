@@ -1,15 +1,3 @@
-//check db for link
-async function loadTags(link) {
-  let response = await fetch('http://localhost:60381/load', { method: 'POST', mode: 'cors', body: link});
-  let body = await response.json();
-  // console.log(['tags'].values());
-  if (body['faved'] == 'true') {
-    currentBookmark = true;
-    for (let tag of body['tags'])
-      field.add(tag);
-  }
-}
-
 //tag list
 async function tagList() {
   let response = await fetch('http://localhost:60381/tagList', { method: 'POST', mode: 'cors'});
@@ -24,15 +12,11 @@ async function getTree() {
   let flatData = await response.json();
   flatData.unshift({ name: "Top Level", parent: null });
 
-  // console.log(flatData);
-
   // convert the flat data into a hierarchy 
   var treeData = d3.stratify()
   .id(function(d) { return d.name; })
   .parentId(function(d) { return d.parent; })
   (flatData);
-
-  // console.log(treeData);
 
   // assign the name to each node
   treeData.each(function(d) {
@@ -119,7 +103,7 @@ function drawTree(treeData) {
       document.getElementById("save").addEventListener("click", function(){
         updateTag(d.data.data.name, document.getElementById("textbox").value);
       });
-      //
+      //delete button click
       document.getElementById("delete").addEventListener("click", function(){
         if (d.data.data.name == 'Top Level')
           alert('You simply can`t.');
@@ -136,8 +120,6 @@ function drawTree(treeData) {
 }
 
 async function openTag(tag) {
-  // console.log(tag);
-
   let response = await fetch('http://localhost:60381/loadTag', { method: 'POST', mode: 'cors', body:tag});
   let links = await response.json();
 
@@ -148,7 +130,6 @@ async function openTag(tag) {
     let a = document.createElement('a');
     a.setAttribute('href', link.url);
     a.innerHTML = link.title;
-    // console.log(a);
     document.getElementById("list").appendChild(a);
   }
 }
@@ -166,6 +147,7 @@ async function deleteTag(tag) {
   treeMode();
 }
 
+//TODO edit link tags
 function openLink(link) {
 
 }

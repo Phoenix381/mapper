@@ -8,6 +8,10 @@
 
 ## Использованные библиотеки
 
-[taggle.js](https://github.com/okcoker/taggle.js) (MIT)
-[jQuery, jQuery UI](https://github.com/jquery) (MIT)
-[d3.js](https://d3js.org/) (BSD)
+### JS
+[taggle.js](https://github.com/okcoker/taggle.js)
+[jQuery, jQuery UI](https://github.com/jquery)
+[d3.js](https://github.com/d3/d3)
+### Python
+[dataset sql db](https://github.com/pudo/dataset)
+[wxPython](https://wxpython.org/)
