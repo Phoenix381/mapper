@@ -37,6 +37,7 @@ async function loadTags(link) {
   // console.log(['tags'].values());
   if (body['faved'] == 'true') {
     currentBookmark = true;
+    document.getElementById("save").innerHTML = "Remove";
     for (let tag of body['tags'])
       field.add(tag);
   }
@@ -54,7 +55,12 @@ async function initTags() {
   activeTab = await browser.tabs.query({active: true, currentWindow: true});
   if (activeTab[0])
     if (checkProtocol(activeTab[0].url))
-      await loadTags(activeTab[0].url);
+      try {
+        await loadTags(activeTab[0].url);
+      }
+      catch(error) {
+        container.textContent = error;
+      }
 
   let tagCompl = await tagList();
   //tag autocompletion
@@ -71,6 +77,13 @@ async function initTags() {
     }
   });
   
+  input.addEventListener("keyup", function(event) {
+    // Cancel the default action, if needed
+    //event.preventDefault();
+    // Number 13 is the "Enter" key on the keyboard
+    if (event.keyCode === 13) saveClick();
+  }); 
+
   //set focus on input field
   input.focus();
 }
@@ -84,6 +97,8 @@ async function saveClick() {
     await saveBookmark();
 
   updateIcon(currentBookmark, activeTab[0]);
+
+  window.close();
 }
 
 async function removeBookmark() {
